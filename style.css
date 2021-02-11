@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+nav {
+    background-color: brown;
+    color: burlywood;
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav .logo{
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 3px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    list-style: none;
+}
+
+nav ul li a {
+    color: burlywood;
+    text-decoration: none;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+}
+
+/* HAMBURGER MENU */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    position: relative;
+}
+
+.menu-toggle input {
+    position: absolute;
+    top: -3px;
+    left: -6px;
+    width: 40px;
+    height: 28px;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    background-color: burlywood;
+    border-radius: 3px;
+    display: block;
+    width: 28px;
+    height: 3px;
+    transition: all 0.8s;
+}
+
+/* HAMBURGER MENU ANIMATION */
+
+.menu-toggle span:nth-child(2) {
+    transform-origin: 0 0;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2){
+    transform: rotateZ(45deg) translate(-1px , -1px);
+}
+
+.menu-toggle span:nth-child(4) {
+    transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(4){
+    transform: rotateZ(-45deg) translate(-1px , 0);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3){
+    transform: scale(0);
+}
+
+
+/* RESPONSIVE */
+ 
+/* UKURAN TABLET */
+@media screen and (max-width: 768px) {
+    nav ul {
+        width: 50%;
+    }
+}
+
+/* UKURAN MOBILE */
+@media screen and (max-width: 576px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav ul {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+        height: 100vh;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: brown;
+        border-radius: 20% 0 0 60%;
+        transform: translateX(100%);
+        transition: all 1s;
+    }
+
+    nav ul li a {
+        position: relative;
+        padding: 3px 0;
+        letter-spacing: 3px;
+    }
+
+    nav ul li a::before,
+    nav ul li a::after  {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: rgb(231, 198, 173);
+        position: absolute;
+        left: 0;
+        transform: scaleX(0);
+        transition: transform 0.5s;
+    }
+
+    nav ul li a::after  {
+        bottom: 0;
+        transform-origin: right;
+    }
+
+    nav ul li a::before  {
+        top: 0;
+        transform-origin: left;
+    }
+
+    nav ul li a:hover::before,
+    nav ul li a:hover::after  {
+       transform: scaleX(1);
+    }
+
+    nav ul.slide {
+        transform: translateX(0);
+    }
+}
